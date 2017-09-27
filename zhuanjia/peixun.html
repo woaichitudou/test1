@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html style="background-color: #fff;">
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/expert.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+	</head>
+
+	<body style="background-color: #fff;">
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #fff;">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="list" id="list">
+				</ul>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/iconfont.js" ></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	'use strict';
+	//获取滚动条当前的位置 
+	function getScrollTop() {
+		var scrollTop = 0;
+		if(document.documentElement && document.documentElement.scrollTop) {
+			scrollTop = document.documentElement.scrollTop;
+		} else if(document.body) {
+			scrollTop = document.body.scrollTop;
+		}
+		return scrollTop;
+	}
+
+	//获取当前可视范围的高度 
+	function getClientHeight() {
+		var clientHeight = 0;
+		if(document.body.clientHeight && document.documentElement.clientHeight) {
+			clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+		} else {
+			clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+		}
+		return clientHeight;
+	}
+
+	//获取文档完整的高度 
+	function getScrollHeight() {
+		return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+	}
+
+	var abc = 1;
+
+	$.ajax({
+		type: 'POST',
+		url: "http://api.whysy.net/index.php/api/Physical/readNewsList",
+		data: {
+			"cat_id": 110,
+			"p": abc
+		},
+		dataType: 'JSON',
+		success: function(data) {
+			console.log(data);
+			var oUl = document.getElementById("list");
+			for(var i = 0; i < data.result.length; i++) {
+				var li = document.createElement('li');
+				var url = `http://api.whysy.net${data.result[i].thumb}`;
+				li.innerHTML = `<div class="img">
+						<img src=${url} alt="" />
+						</div>						
+						<div class="content">
+							<p class="title">${data.result[i].title}</p>
+							<p class="scan">
+								<span class="time">${data.result[i].add_time}</span>
+								<span class="iconfont icon-yanjing"></span>
+								<span class="person">${data.result[i].click}</span>
+							</p>
+						</div>`;
+				oUl.appendChild(li);
+			}
+
+			//上拉加载刷新		
+			window.onscroll = function() {
+				if(getScrollTop() + getClientHeight() == getScrollHeight()) {
+					abc++;
+					$.ajax({
+						type: 'POST',
+						url: "http://api.whysy.net/index.php/api/Physical/readNewsList",
+						data: {
+							"cat_id": 110,
+							"p": abc
+						},
+						dataType: 'JSON',
+						success: function(data) {
+							var oUl = document.getElementById("list");
+							for(var i = 0; i < data.result.length; i++) {
+								var li = document.createElement('li');
+								li.className = `abc${abc}`;
+								var url = `http://api.whysy.net${data.result[i].thumb}`;
+								li.innerHTML = `
+								<div class="img">
+									<img src=${url} alt="" />
+								</div>						
+								<div class="content">
+									<p class="title">${data.result[i].title}</p>
+									<p class="scan">
+										<span class="time">${data.result[i].add_time}</span>
+										<span class="iconfont icon-yanjing"></span>
+										<span class="person">${data.result[i].click}</span>
+									</p>
+								</div>`;
+								oUl.appendChild(li);
+							}
+
+							/*点击获取视频*/
+							var aLi = document.getElementsByClassName(`abc${abc}`);
+							for(let i = 0; i < aLi.length; i++) {
+
+								aLi[i].addEventListener('touchmove', function() {
+									this.isMove = true;
+								});
+								aLi[i].addEventListener("touchend", function(e) {
+									var index = $('.list li').index(this),
+										num = data.result[i].article_id;
+									// var clickNum = $('.person').eq(index).html();
+									// clickNum++;
+									// console.log(clickNum);
+									// $('.person').eq(index).html(clickNum);
+									// console.log(num);
+									$.ajax({
+										data : {
+											article_id : num
+										},
+										url: "http://api.whysy.net/index.php/api/Physical/updateArticleClick",
+										type:"post",
+										dataType: 'JSON',
+										success : function(data){
+											console.log(data);
+										}
+									});
+									if(!this.isMove) {
+										window.location.href = "xiangqingye.html?id=" + num
+									}
+									this.isMove = false;
+								});
+							}
+						}
+					});
+				}
+			}
+			/*点击获取视频*/
+			var aLi = document.getElementsByTagName("li");
+			for(let i = 0; i < aLi.length; i++) {
+				aLi[i].addEventListener('touchmove', function() {
+					this.isMove = true;
+				});
+				aLi[i].addEventListener("touchend", function() {
+					var index = $('.list li').index(this),
+						num = data.result[i].article_id;
+						// var clickNum = $('.person').eq(index).html();
+						// clickNum++;
+						// console.log(clickNum);
+						// $('.person').eq(index).html(clickNum);
+						$.ajax({
+							data : {
+								article_id : num
+							},
+							url: "http://api.whysy.net/index.php/api/Physical/updateArticleClick",
+							type:"post",
+							dataType: 'JSON',
+							success : function(data){
+								console.log(data);
+							}
+						});
+					if(!this.isMove) {
+						window.location.href = "xiangqingye.html?id=" + num;
+					}
+					this.isMove = false;
+				});
+			}
+		}
+	});
+
+//	/*回弹动画*/
+//	mui('.mui-scroll-wrapper').scroll({
+//		top: "44px",
+//		scrollY: true, //是否竖向滚动
+//		scrollX: false, //是否横向滚动
+//		startX: 0, //初始化时滚动至x
+//		startY: 0, //初始化时滚动至y
+//		indicators: true, //是否显示滚动条
+//		bounce: true, //是否启用回弹
+//		deceleration: 0.0001 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+//	});
+</script>

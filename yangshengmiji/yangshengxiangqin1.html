@@ -1,0 +1,167 @@
+<!doctype html>
+<html style="background: #fff;">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/expert.css" />
+		<link rel="stylesheet" href="css/myemojiPl.css">
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+	        mui.init()
+	    </script>
+		<style>
+			.mui-scroll-wrapper{
+				position: static;
+			}
+			.new,
+			.msg {
+				margin-left: 15px;
+				margin-right: 15px;
+			}
+			
+			.new img {
+				width: 100%;
+				height: 200px;
+			}
+			
+			.msg {
+				margin-top: 6px;
+			}
+			
+			.time {
+				margin-left: 20px;
+			}
+
+			
+			.msg {
+				margin-top: 6px;
+				border-bottom: 1px solid #999;
+			}
+			
+			
+			#title p{
+				width: 96%;
+				margin: 0 auto;
+				height: auto;
+				line-height: 46px;
+				text-align: center;
+				font-size: 18px;
+				color: #000;
+				font-weight: 600;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			
+			.mui-bar-nav~.mui-content{
+				padding: 0;
+			}
+        .huifu {
+            width: 100%;
+            background: rgb(245, 245, 245)
+        }
+        
+        .huifu-box {
+            width: 96%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .icon {
+            width: 60px;
+            height: 60px;
+            display: block;
+            border-radius: 50%;
+            overflow: hidden;
+            float: left;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+        
+        .huifu-box span {
+            display: block;
+            font-size: 14px;
+            margin: 5px 0;
+            color: rgb(19, 101, 254)
+        }
+        
+        .huifu-box time {
+            display: block;
+            font-size: 12px;
+            margin: 5px 0;
+            color: #333;
+        }
+        
+        .huifu-box p {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .titles {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color: #333;
+            font-size: 14px;
+            border-bottom: 1px solid #ccc;
+        }
+		</style>
+	</head>
+
+	<body style="background: #fff;">
+		<div id='title'></div>
+		<div class="mui-content" style="background: #fff;">
+			<div class="mui-scroll-wrapper" style="top:44px;">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<p id="msg" class="msg"></p>
+					<p id="new" class="new"></p>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	//获取url参数
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r != null) return unescape(r[2]);
+		return null;
+	};
+
+	var article_id = GetQueryString('id');
+	if(article_id == null) {
+		article_id = 1413;
+	} else {
+		article_id = GetQueryString('id');
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: "http://tjb.6web.cn/index.php/api/Physical/readNewsDetail",
+		data: {
+			"article_id": article_id
+		},
+		dataType: 'JSON',
+		success: function(data) {
+			console.log(data);
+			var title = document.getElementById('title');
+			title.innerHTML = ` 
+					    <p>${data.result.title}</p>`;
+			var news = document.getElementById('new');
+			var oMsg = document.getElementById('msg');
+			oMsg.innerHTML = `<span class="author">颐寿缘</span><span class="time">${data.result.add_time}</span>`;
+			news.innerHTML = data.result.content;
+		}
+	});
+</script>

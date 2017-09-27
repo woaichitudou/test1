@@ -1,0 +1,29 @@
+{
+	"tuijian.html": {
+		"resources": [
+			"js/iconfont.js",
+			"js/mui.min.js",
+			"css/iconfont.css",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"tuijianxiangqing.html",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"tuijianxiangqing.html"
+		]
+	},
+	"tuijianxiangqing.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"tuijian.html",
+			"css/expert.css",
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js"
+		],
+		"refer": [
+			"tuijian.html"
+		]
+	}
+}

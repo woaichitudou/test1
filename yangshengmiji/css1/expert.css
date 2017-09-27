@@ -1,0 +1,35 @@
+/*清除浏览器默认样式*/
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+.clearfix:after{content: ;display: block;clear:both}
+
+
+/*三高专题，肿瘤预防*/
+.mui-bar-nav{background-color: #f43334;}
+.mui-icon-left-nav,.mui-title{color:#fff;}
+.mui-bar-nav{box-shadow: none;}
+div.mui-content{}
+li{height: 80px;border-bottom: 2px solid #ddd;}
+.img{float:left;height:60px;width:30%;text-align: center;margin-top:10px;}
+img{height:60px;width:90%;}
+.content{float:right;width:70%;}
+.content p{}
+.title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:20px;padding-top:10px;}
+.scan{padding-top:16px;padding-left:20px;}
+.person{padding-right:20px;margin-left: 4%;}
+
+/*男性健康，女性健康*/
+.mui-card-footer:before, .mui-card-header:after{height: 0;}
+.mui-card-header{font-size: 14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mui-card-content{width: 90%;margin-left:5%;text-align: center;}
+.mui-card-content img{width: 30%;}
+.mui-card-footer span{font-size: 12px;}
+------------------------------------------------
+.list p.loadding{text-align: center;vertical-align: middle;margin-left:200px;}
+.load{width:80px;height: 40px;vertical-align: middle;margin-left:30%;}
+.iconfont{
+	margin-left: 16%;
+}
+.mui-scroll img{
+	width: 96%;
+}

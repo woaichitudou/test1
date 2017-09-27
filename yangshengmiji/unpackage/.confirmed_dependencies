@@ -1,0 +1,170 @@
+{
+	"wushu.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/expert.css"
+		],
+		"refer": []
+	},
+	"newsDetail.html": {
+		"resources": [
+			"diet.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js"
+		],
+		"refer": [
+			"diet.html"
+		]
+	},
+	"diet.html": {
+		"resources": [
+			"newsDetail.html",
+			"js/mui.min.js",
+			"css/expert.css",
+			"js/jquery-3.2.1.min.js"
+		],
+		"refer": [
+			"newsDetail.html"
+		]
+	},
+	"zhongyi.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html",
+			"yangshengxiangqinaaaaa.html"
+		],
+		"refer": [
+			"tuijianxiangqing.html",
+			"yangshengxiangqin.html",
+			"yangshengxiangqinaaaaa.html"
+		]
+	},
+	"tuijianxiangqing.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css"
+		],
+		"refer": []
+	},
+	"daojia.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"tuijianxiangqing.html"
+		]
+	},
+	"fojia.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"tuijianxiangqing.html"
+		]
+	},
+	"jinluo.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"tuijianxiangqing.html"
+		]
+	},
+	"shiliao.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"tuijianxiangqing.html"
+		]
+	},
+	"yangshengxiangqin.html": {
+		"resources": [
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"daojia.html",
+			"shuiming.html",
+			"fojia.html",
+			"jinluo.html",
+			"shiliao.html",
+			"yundong.html",
+			"css/expert.css",
+			"zhongyi.html",
+			"siji.html"
+		],
+		"refer": [
+			"shuiming.html",
+			"zhongyi.html",
+			"siji.html"
+		]
+	},
+	"shuiming.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"yangshengxiangqin.html"
+		]
+	},
+	"yundong.html": {
+		"resources": [
+			"yangshengxiangqin.html",
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css"
+		],
+		"refer": [
+			"yangshengxiangqin.html"
+		]
+	},
+	"yangshengxiangqinaaaaa.html": {
+		"resources": [
+			"zhongyi.html",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"siji.html",
+			"css/expert.css"
+		],
+		"refer": [
+			"zhongyi.html",
+			"siji.html"
+		]
+	},
+	"siji.html": {
+		"resources": [
+			"js/mui.min.js",
+			"js/jquery-3.2.1.min.js",
+			"css/expert.css",
+			"yangshengxiangqinaaaaa.html",
+			"js/iconfont.js",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf",
+			"yangshengxiangqin.html"
+		],
+		"refer": [
+			"yangshengxiangqinaaaaa.html",
+			"yangshengxiangqin.html"
+		]
+	}
+}

@@ -1,0 +1,508 @@
+<!doctype html>
+<html style="background: #fff;">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="css/mui1.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/expert.css" />
+    <!-- <link rel="stylesheet" href="css/myemojiPl.css"> -->
+    <link rel="stylesheet" href="css/iconfont.css" />
+    <link rel="stylesheet" href="./font_411081_23p02xnu8zbsm7vi/iconfont.css">
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript">
+        mui.init();
+    </script>
+    <style>
+        .mui-scroll-wrapper {
+            position: static;
+        }
+        
+        .new,
+        .msg {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        
+        .new img {
+            width: 100%!important;
+            height: 200px;
+        }
+        
+        .msg {
+            margin: 0px 10px 5px 10px;
+            border-bottom: 1px solid #e8e8e8;
+            color: #8E8E8E;
+            padding-bottom: 5px;
+        }
+        
+        .msg .author {
+            font-size: 14px;
+        }
+        
+        .msg .time {
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        
+        .msg .person {
+            font-size: 14px;
+        }
+        
+        #title {
+            margin-top: 10px;
+        }
+        
+        #title p {
+            width: 96%;
+            margin: 0 auto;
+            height: auto;
+            line-height: 36px;
+            /*text-align: center;*/
+            font-size: 18px;
+            color: #000;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+        
+        .mui-bar-nav~.mui-content {
+            padding: 0;
+        }
+        
+        .huifu {
+            width: 100%;
+            background: rgb(245, 245, 245);
+            padding-bottom: 90px;
+        }
+        
+        .huifu-box {
+            width: 96%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .icon {
+            width: 60px;
+            height: 60px;
+            display: block;
+            border-radius: 50%;
+            overflow: hidden;
+            float: left;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+        
+        .huifu-box span {
+            display: block;
+            font-size: 14px;
+            margin: 5px 0;
+            color: rgb(19, 101, 254)
+        }
+        
+        .huifu-box time {
+            display: block;
+            font-size: 12px;
+            margin: 5px 0;
+            color: #333;
+        }
+        
+        .huifu-box p {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .huifu-box p img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .titles {
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color: #333;
+            font-size: 14px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .TableWare {
+            width: 100%;
+            height: 80px;
+            background: rgb(231, 232, 237);
+            border-bottom: 0.5px solid rgb(160, 158, 164);
+            padding-top: 1px;
+            position: fixed;
+            bottom: 0px;
+            left: 0;
+            transition: bottom .2s;
+            -webkit-transition: bottom .2s;
+            /* Safari */
+            z-index: 999;
+        }
+        
+        .TableWare-title {
+            width: 100%;
+            height: 30px;
+            /* background: #ccc; */
+            line-height: 30px;
+            margin: 0 auto;
+        }
+        
+        .TableWare-title i {
+            color: rgb(108, 111, 128);
+            font-size: 24px;
+            margin-left: 5px;
+            margin-top: 5px;
+            display: inline-block
+        }
+        
+        .TableWare-title span {
+            display: inline-block;
+            width: 70px;
+            height: 24px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 5px;
+            float: right;
+            margin-top: 7px;
+        }
+        
+        .TableWare-box {
+            width: 90%;
+            margin: 0 auto;
+            height: 34px;
+            border: .5px solid rgb(160, 158, 164);
+            border-radius: 3px;
+            margin-top: 7px;
+            position: relative;
+        }
+        
+        .TableWare-box-input {
+            outline: none;
+            overflow: hidden;
+            overflow-y: scroll;
+            width: 100%;
+            height: 100%;
+            line-height: 30px;
+            -webkit-user-select: text
+        }
+        
+        .TableWare-box-input img {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+        
+        .mode {
+            width: 50%;
+            height: 80px;
+            background: rgba(0, 0, 0, .4);
+            text-align: center;
+            line-height: 80px;
+            color: #fff;
+            display: none;
+            top: 150px;
+            position: absolute;
+            z-index: 9999;
+            left: 50%;
+            margin-left: -25%;
+        }
+        
+        .TableWare-show {
+            width: 100%;
+            height: 128px;
+            margin: 0 auto;
+            padding: 10px 0;
+            overflow: hidden;
+            overflow-y: scroll;
+            /* border: .5px solid rgb(160, 158, 164); */
+            background: #fff;
+            position: absolute;
+            left: 0;
+            top: 80px;
+            z-index: 2;
+            border-top: none;
+            display: none;
+        }
+        
+        .TableWare-show img {
+            width: 8%;
+            height: auto;
+            float: left;
+            margin-left: -1px;
+            margin-top: -1px;
+            position: relative;
+            margin: 1% 2%;
+            cursor: pointer;
+        }
+        
+        .loding {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            color: #333;
+            font-size: 28px;
+            position: fixed;
+            text-align: center;
+            line-height: 400px;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body style="background: #fff;">
+    <!--     <header class="mui-bar mui-bar-nav">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    </header> -->
+    <div class="mode"></div>
+    <div id='title'></div>
+    <div class="mui-content " style="background: #fff;">
+        <div class="mui-scroll-wrapper" style="top:44px;">
+            <div class="mui-scroll">
+                <!--这里放置真实显示的DOM内容-->
+                <p id="msg" class="msg"></p>
+                <p id="new" class="new"></p>
+            </div>
+
+            <div class="TableWare">
+                <div class="TableWare-box">
+                    <div class="TableWare-box-input" contenteditable="true" id="sub">
+
+                    </div>
+                    <div class="TableWare-title">
+                        <i class="iconfont" id="a">&#xe605;</i>
+                        <!-- <i class="iconfont" id="b">&#xe602;</i>
+                        <i class="iconfont" id="c">&#xe638;</i> -->
+                        <span id="submit">提交</span>
+                    </div>
+
+                </div>
+                <div class="TableWare-show">
+
+                </div>
+            </div>
+
+            <div class="titles">精彩评论</div>
+            <div class="huifu">
+                <!-- <div class="huifu-box">
+                    <img src="./img/AcFun/1.png" alt="">
+                    <span>哈哈哈</span>
+                    <time>11小时前</time>
+                    <p>6666666666</p>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+    <!-- <script type="text/javascript" src="js/bese.js" ></script> -->
+    <!--     <script>
+    check_login();
+        // mui(".postBtn").on('tap', '#postBtn', function(e) {
+        //     alert("用户登录验证中...");
+        //     check_login();
+        // })
+    </script> -->
+    <script src="js/jquery.js"></script>
+
+    <script>
+        var u = 1;
+        var alength = 124; // 文件夹的表情数量
+        $(".TableWare-box-input").focus(function() {
+            $(".TableWare-show").hide()
+            $(".TableWare-show img").remove()
+            $(".TableWare").css("bottom", "0")
+        })
+        $("#a").click(function() {
+            //判断当前是否显示表情框
+            var imgi = $(".TableWare-show img").length
+                //当表情库的个数不等于零且路径等于a文件夹第一个表情的路径则让表情库隐藏
+            if (imgi != 0) {
+                $(".TableWare-show").hide()
+                $(".TableWare-show img").remove()
+                $(".TableWare").css("bottom", "0")
+            } else {
+                $(".TableWare-show").show()
+                $(".TableWare-show img").remove()
+                $(".TableWare").css("bottom", "121px")
+                    //遍历所有存在的表情
+                for (var i = 1; i <= alength; i++) {
+                    var html =
+                        `
+                    <img src="./default/emoji_${i}.png" alt="">
+                    `
+                    $(".TableWare-show").append(html)
+                }
+                // 绑定表情显示事件
+                $(".TableWare-show img").click(add)
+            }
+        })
+
+        function add() {
+            var url = ($(this).attr("src")) //获取图片路径
+            var img =
+                `
+                <img src="${url}" alt="">
+
+                `
+            $(".TableWare-box-input").append(img)
+        }
+        $("#submit").click(function() {
+            var user = android.JsCallAndroid();
+            var json = JSON.parse(user);
+            var userid = json.userid;
+            var token = json.token;
+            if (token == -1) {
+                android.start();
+            }
+            $(".TableWare-show").hide()
+            $(".TableWare-show img").remove()
+            $(".TableWare").css("bottom", "0")
+            var html = $("#sub").html()
+                // console.log(html)
+            $.ajax({
+                type: 'POST',
+                url: "http://api.whysy.net/index.php/api/Physical/addContent",
+                data: {
+                    "article_id": article_id,
+                    "content": html,
+                    "token": token,
+                    "user_id": userid,
+                },
+                dataType: 'JSON',
+                success: function(data) {
+                    if (data.status == 1) {
+                        $(".mode").html("评论成功")
+                        $(".mode").show();
+                        timer = setInterval(io, 1000)
+                            // mui.alert("调用成功2","提示2","确认2",null);
+                    } else {
+                        $(".mode").html("评论失败")
+                        $(".mode").show();
+                        timer = setInterval(io, 1000)
+                            // mui.alert("调用成功2","提示2","确认2",null);
+                    }
+                }
+            });
+            // console.log(data);
+            // ajax 完毕清空内容 然后可以自己选择刷新页面或者手动添加dom元素
+            // 这里发ajax作后续处理
+        })
+
+        function io() {
+            u--;
+            if (u == -1) {
+                a()
+            }
+        }
+
+        function a() {
+            $(".TableWare-box-input").html("")
+            window.location.reload();
+        }
+        var heighta = $(window).height()
+        $("#input").focus(function() {
+
+            $(window).resize()
+        })
+        $(window).resize(function() {
+            var heightb = $(window).height()
+            var top = heighta - heightb + 82
+            var top = top + "px"
+            $(".TableWare").css("bottom", top)
+        })
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    //  document.addEventListener('touchmove', function(event) {
+    //      // 判断默认行为是否可以被禁用
+    //      if(event.cancelable) {
+    //          // 判断默认行为是否已经被禁用
+    //          if(!event.defaultPrevented) {
+    //              event.preventDefault();
+    //          }
+    //      }
+    //  }, false);
+
+    //获取url参数
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    };
+
+    var article_id = GetQueryString('id');
+    if (article_id == null) {
+        article_id = 1413;
+    } else {
+        article_id = GetQueryString('id');
+    }
+    // console.log(article_id)
+    $.ajax({
+        type: 'POST',
+        url: "http://api.whysy.net/index.php/api/Physical/readNewsDetail",
+        data: {
+            "article_id": article_id,
+
+        },
+        dataType: 'JSON',
+        success: function(data) {
+            console.log(data);
+            var title = document.getElementById('title');
+            title.innerHTML = `
+                        <p >${data.result.title}</p>`;
+            var news = document.getElementById('new');
+            var oMsg = document.getElementById('msg');
+            oMsg.innerHTML = `<span class="author">颐寿缘</span><span class="time">${data.result.add_time}</span><span class="iconfont icon-yanjing" style="margin-left:20px"></span><span class="person">${data.result.click}</span>`;
+            news.innerHTML = data.result.content;
+        }
+    });
+    //获取评论
+    $.ajax({
+        type: 'POST',
+        url: "http://api.whysy.net/index.php/api/Physical/contentList",
+        data: {
+            "article_id": article_id
+        },
+        dataType: 'JSON',
+        success: function(data) {
+            console.log(data);
+            if (data.status != 1) {
+                return
+            }
+            var length = data.result.length
+            for (var i = 0; i < length; i++) {
+                var html = `
+                    <div class="huifu-box">
+                        <img src="${data.result[i].head_pic}" alt="" class="icon">
+                        <span>${data.result[i].username}</span>
+                        <time>${data.result[i].time}</time>
+                        <p class="aa">${data.result[i].content}</p>
+                    </div>
+                `
+                $(".huifu").append(html)
+            }
+
+        }
+    });
+</script>
